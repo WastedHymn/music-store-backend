@@ -35,7 +35,7 @@ public class Album {
         return "Album{" +
                 "albumId=" + albumId +
                 ", albumTitle='" + albumTitle + '\'' +
-                ", artist=" + artist.getArtistName() +
+                ", artist=" + artist +
                 '}';
     }
 }

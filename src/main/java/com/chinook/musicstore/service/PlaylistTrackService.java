@@ -36,18 +36,22 @@ public class PlaylistTrackService {
         List<TrackDto> tracks = new ArrayList<>();
         playlistTracks.forEach(playlistTrack -> {
             Track track = playlistTrack.getTrack();
-            TrackDto trackDto = new TrackDto(
-                    track.getTrackId(),
-                    track.getTrackName(),
-                    track.getAlbum(),
-                    track.getMediaType(),
-                    track.getGenre(),
-                    track.getComposer(),
-                    track.getUnitPrice());
+            TrackDto trackDto = getTrackDto(track);
             if (!tracks.contains(trackDto))
                 tracks.add(trackDto);
         });
         System.out.println("tracks size: " + tracks.size());
         return tracks;
+    }
+
+    private static TrackDto getTrackDto(Track track) {
+        return new TrackDto(
+                track.getTrackId(),
+                track.getTrackName(),
+                track.getAlbum(),
+                track.getMediaType(),
+                track.getGenre(),
+                track.getComposer(),
+                track.getUnitPrice());
     }
 }
