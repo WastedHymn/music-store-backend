@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -25,17 +24,21 @@ public class Album {
     @Column(name = "title")
     private String albumTitle;
 
+    /*
     @ManyToOne
     @JoinColumn(name = "artist_id")
     @ToString.Exclude
     private Artist artist;
+    */
+    @Column(name = "artist_id")
+    private int artistId;
 
     @Override
     public String toString() {
         return "Album{" +
                 "albumId=" + albumId +
                 ", albumTitle='" + albumTitle + '\'' +
-                ", artist=" + artist +
+                ", artistId=" + artistId +
                 '}';
     }
 }

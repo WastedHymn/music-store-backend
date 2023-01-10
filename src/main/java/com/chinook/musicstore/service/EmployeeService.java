@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
 
-    public List<Employee> getAllEmployees(){
+    public List<Employee> findAllEmployees(){
         return this.employeeRepository.findAll();
     }
 }

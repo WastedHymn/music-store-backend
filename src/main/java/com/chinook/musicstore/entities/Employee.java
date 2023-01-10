@@ -28,10 +28,11 @@ public class Employee {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "reports_to")
+    //@ManyToOne
+    //@JoinColumn(name = "reports_to")
+    @Column(name = "reports_to")
     @Nullable
-    private Employee employee;
+    private int reportEmployeeId;
 
     @Column(name = "birth_date")
     private LocalDate birthDate;

@@ -1,6 +1,6 @@
 package com.chinook.musicstore.controller;
 
-import com.chinook.musicstore.entities.Track;
+import com.chinook.musicstore.dto.TrackDto;
 import com.chinook.musicstore.service.TrackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,18 +14,18 @@ import java.util.List;
 public class TracksController {
     private final TrackService trackService;
 
-    @GetMapping("/getAllTracks")
-    public List<Track> getAllTracks() {
-        return this.trackService.getAllTracks();
+    @GetMapping("/findAllTracks")
+    public List<TrackDto> findAllTracks() {
+        return this.trackService.findAllTracks();
     }
 
-    @GetMapping("/getTracksByAlbumId")
-    public List<Track> getTracksByAlbumId(@RequestParam("albumId") int albumId) {
-        return this.trackService.getTracksByAlbumId(albumId);
+    @GetMapping("/findTracksByAlbumId")
+    public List<TrackDto> findTracksByAlbumId(@RequestParam("albumId") int albumId) {
+        return this.trackService.findTracksByAlbumId(albumId);
     }
 
-    @GetMapping("/getTracksByGenreId")
-    public List<Track> getTracksByGenreId(@RequestParam("genreId") int genreId) {
-        return this.trackService.getTracksByGenreId(genreId);
+    @GetMapping("/findTracksByGenreId")
+    public List<TrackDto> findTracksByGenreId(@RequestParam("genreId") int genreId) {
+        return this.trackService.findTracksByGenreId(genreId);
     }
 }

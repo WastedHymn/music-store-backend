@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PlaylistTrackRepository extends JpaRepository<PlaylistTrack, PlaylistTrackId> {
-    List<PlaylistTrack> getByPlaylistPlaylistId(int playlistId);
+    List<PlaylistTrack> findByPlaylistTrackIdPlaylistId(int playlistId);
 
-    List<PlaylistTrack> findAllByOrderByTrackTrackId();
+    List<PlaylistTrack> findAllByOrderByPlaylistTrackIdTrackId();
 }

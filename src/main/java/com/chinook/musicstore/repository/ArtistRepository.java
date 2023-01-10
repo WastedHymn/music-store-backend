@@ -8,7 +8,10 @@ import java.util.List;
 
 
 public interface ArtistRepository extends JpaRepository<Artist, Integer> {
-    List<Artist> getArtistByArtistId(int artistId);
 
-    List<Artist> getArtistByArtistName(String artistName);
+    List<Artist> findAllByOrderByArtistName();
+
+    Artist findByArtistId(int artistId);
+
+    Artist findByArtistName(String artistName);
 }

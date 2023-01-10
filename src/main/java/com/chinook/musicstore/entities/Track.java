@@ -1,12 +1,10 @@
 package com.chinook.musicstore.entities;
 
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -28,18 +26,30 @@ public class Track {
     @Column(name = "name")
     private String trackName;
 
+    /*
     @ManyToOne
     @JoinColumn(name = "album_id")
     @ToString.Exclude
     private Album album;
+    */
+    @Column(name ="album_id")
+    private int albumId;
 
+    /*
     @ManyToOne
     @JoinColumn(name = "media_type_id")
     private MediaType mediaType;
+    */
+    @Column(name = "media_type_id")
+    private int mediaTypeId;
 
+    /*
     @ManyToOne
     @JoinColumn(name = "genre_id")
     private Genre genre;
+    */
+    @Column(name = "genre_id")
+    private int genreId;
 
     @Column(name = "composer")
     private String composer;
@@ -54,7 +64,7 @@ public class Track {
     private BigDecimal unitPrice;
 
     @OneToMany(mappedBy = "playlistId")
-    @ToString.Exclude
+    //@ToString.Exclude
     List<Playlist> playlists;
 
     @Override
@@ -62,9 +72,9 @@ public class Track {
         return "Track{" +
                 "trackId=" + trackId +
                 ", trackName='" + trackName + '\'' +
-                ", album=" + album +
-                ", mediaType=" + mediaType.getMediaTypeName() +
-                ", genre=" + genre.getGenreName() +
+                ", album=" + albumId +
+                ", mediaType=" + mediaTypeId +
+                ", genre=" + genreId +
                 ", composer='" + composer + '\'' +
                 ", milliseconds=" + milliseconds +
                 ", bytes=" + bytes +

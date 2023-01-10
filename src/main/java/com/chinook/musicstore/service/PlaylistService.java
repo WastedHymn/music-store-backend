@@ -12,7 +12,7 @@ import java.util.List;
 public class PlaylistService {
     private final PlaylistRepository playlistRepository;
 
-    public List<Playlist> getAllPlaylists() {
+    public List<Playlist> findAllPlaylists() {
         return this.playlistRepository.findAll();
     }
 }

@@ -12,7 +12,16 @@ import java.util.List;
 public class MediaTypeService {
     private final MediaTypeRepository mediaTypeRepository;
 
-    public List<MediaType> getAllMediaTypes(){
+    public MediaType findByMediaTypeId(int mediaTypeId){
+        return this.mediaTypeRepository.findByMediaTypeId(mediaTypeId);
+    }
+
+    public List<MediaType> findAllMediaTypes(){
         return this.mediaTypeRepository.findAll();
     }
+
+    public List<MediaType> findByOrderByMediaTypeName(){
+        return this.mediaTypeRepository.findByOrderByMediaTypeName();
+    }
+
 }

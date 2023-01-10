@@ -14,22 +14,24 @@ import java.util.List;
 public class ArtistsController {
     private final ArtistService artistService;
 
-    @GetMapping("/getAllArtists")
-    public List<Artist> getAllArtists() {
-        System.out.println("GETTING ALL ARTISTS FROM ARTIST SERVICE...");
-        return this.artistService.getAllArtists();
+    @GetMapping("/findAllArtists")
+    public List<Artist> findAllArtists() {
+        return this.artistService.findAllArtists();
     }
 
-    @GetMapping("/getArtistById")
-    public List<Artist> getArtistById(@RequestParam(name = "artistId") int artistId) {
-        System.out.println("GETTING ARTIST " + artistId + " FROM ARTIST SERVICE...");
-        return this.artistService.getArtistByArtistId(artistId);
+    @GetMapping("/findArtistById")
+    public Artist findArtistById(@RequestParam(name = "artistId") int artistId) {
+        return this.artistService.findArtistByArtistId(artistId);
     }
 
-    @GetMapping("/getArtistByName")
-    public List<Artist> getArtistByArtistName(@RequestParam(name = "artistName") String artistName) {
-        System.out.println("GETTING ARTIST " + artistName + " FROM ARTIST SERVICE...");
-        return this.artistService.getArtistByArtistName(artistName);
+    @GetMapping("/findArtistByName")
+    public Artist findArtistByArtistName(@RequestParam(name = "artistName") String artistName) {
+        return this.artistService.findArtistByArtistName(artistName);
+    }
+
+    @GetMapping("/findAllByOrderByArtistName")
+    public List<Artist> findAllByOrderByArtistName() {
+        return this.artistService.findAllByOrderByArtistName();
     }
 
 }

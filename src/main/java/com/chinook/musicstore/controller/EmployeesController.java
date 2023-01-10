@@ -17,9 +17,9 @@ import java.util.List;
 public class EmployeesController {
     private final EmployeeService employeeService;
 
-    @GetMapping("/getAllEmployees")
-    public List<Employee> getAllEmployees(){
-        return this.employeeService.getAllEmployees();
+    @GetMapping("/findAllEmployees")
+    public List<Employee> findAllEmployees(){
+        return this.employeeService.findAllEmployees();
     }
 
 }

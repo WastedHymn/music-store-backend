@@ -1,23 +1,23 @@
 package com.chinook.musicstore.dto;
 
-import com.chinook.musicstore.entities.Album;
-import com.chinook.musicstore.entities.Genre;
-import com.chinook.musicstore.entities.MediaType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 public class TrackDto {
     private int trackId;
     private String trackName;
-    private Album album;
-    private MediaType mediaType;
-    private Genre genre;
+    private int albumId;
+    private String albumTitle;
+    private int mediaTypeId;
+    private int genreId;
     private String composer;
     private BigDecimal unitPrice;
 
@@ -26,9 +26,9 @@ public class TrackDto {
         return "TrackDto{" +
                 "trackId=" + trackId +
                 ", trackName='" + trackName + '\'' +
-                ", album=" + album +
-                ", mediaType=" + mediaType +
-                ", genre=" + genre +
+                ", album=" + albumId +
+                ", mediaType=" + mediaTypeId +
+                ", genre=" + genreId +
                 ", composer='" + composer + '\'' +
                 ", unitPrice=" + unitPrice +
                 '}';

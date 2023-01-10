@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface AlbumRepository extends JpaRepository<Album, Integer> {
-    List<Album> getByArtistArtistName(String artistName);
 
-    List<Album> getByArtistArtistId(int artistId);
+    Album findByAlbumId(int albumId);
 
-    List<Album> findAllByOrderByArtistArtistName();
-    Album getByAlbumId(int albumId);
+    Album findByAlbumTitle(String albumTitle);
+
+    List<Album> findAllByArtistId(int artistId);
+
+    List<Album> findAllByArtistIdOrderByAlbumId(int artistId);
+
+
 }

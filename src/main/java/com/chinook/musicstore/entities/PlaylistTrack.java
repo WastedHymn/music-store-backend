@@ -20,13 +20,24 @@ public class PlaylistTrack {
     @EmbeddedId
     PlaylistTrackId playlistTrackId;
 
+    /*
     @ManyToOne
     @MapsId("playlistId")
     @JoinColumn(name = "playlist_id")
     Playlist playlist;
 
+    //@Column(name = "playlist_id")
+    //private int playlistId;
+
+
     @ManyToOne
     @MapsId("trackId")
     @JoinColumn(name = "track_id")
     Track track;
+
+
+    //@Column(name = "track_id")
+    //private int trackId;
+    */
+
 }

@@ -17,8 +17,18 @@ import java.util.List;
 public class MediaTypesController {
     private final MediaTypeService mediaTypeService;
 
-    @GetMapping("/getAllMediaTypes")
-    public List<MediaType> getAllMediaTypes(){
-        return this.mediaTypeService.getAllMediaTypes();
+    @GetMapping("/findByMediaTypeId")
+    public MediaType findByMediaTypeId(int mediaTypeId){
+        return this.mediaTypeService.findByMediaTypeId(mediaTypeId);
+    }
+
+    @GetMapping("/findByOrderByMediaTypeName")
+    public List<MediaType> findByOrderByMediaTypeName(){
+        return this.mediaTypeService.findByOrderByMediaTypeName();
+    }
+
+    @GetMapping("/findAllMediaTypes")
+    public List<MediaType> findAllMediaTypes(){
+        return this.mediaTypeService.findAllMediaTypes();
     }
 }

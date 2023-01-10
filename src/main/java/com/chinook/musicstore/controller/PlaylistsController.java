@@ -17,8 +17,8 @@ import java.util.List;
 public class PlaylistsController {
     private final PlaylistService playlistService;
 
-    @GetMapping("/getAllPlaylists")
-    public List<Playlist> getAllPlaylists(){
-        return this.playlistService.getAllPlaylists();
+    @GetMapping("/findAllPlaylists")
+    public List<Playlist> findAllPlaylists(){
+        return this.playlistService.findAllPlaylists();
     }
 }

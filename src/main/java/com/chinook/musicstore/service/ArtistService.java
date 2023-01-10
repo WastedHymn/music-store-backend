@@ -12,19 +12,19 @@ import java.util.List;
 public class ArtistService {
     private final ArtistRepository artistRepository;
 
-    public List<Artist> getAllArtists() {
-        System.out.println("GETTING ALL ARTISTS FROM ARTIST REPOSITORY...");
+    public List<Artist> findAllArtists() {
         return this.artistRepository.findAll();
     }
 
-    public List<Artist> getArtistByArtistId(int artistId) {
-        System.out.println("GETTING ARTIST " + artistId + " FROM ARTIST REPOSITORY...");
-        return this.artistRepository.getArtistByArtistId(artistId);
+    public Artist findArtistByArtistId(int artistId) {
+        return this.artistRepository.findByArtistId(artistId);
     }
 
-    public List<Artist> getArtistByArtistName(String artistName){
-        System.out.println("GETTING ARTIST " + artistName + " FROM ARTIST REPOSITORY...");
-        System.out.println("GETTING ARTIST " + artistName + " FROM ARTIST REPOSITORY...");
-        return this.artistRepository.getArtistByArtistName(artistName);
+    public Artist findArtistByArtistName(String artistName) {
+        return this.artistRepository.findByArtistName(artistName);
+    }
+
+    public List<Artist> findAllByOrderByArtistName() {
+        return this.artistRepository.findAllByOrderByArtistName();
     }
 }

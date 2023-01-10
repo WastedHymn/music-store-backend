@@ -1,5 +1,6 @@
 package com.chinook.musicstore.controller;
 
+import com.chinook.musicstore.dto.AlbumDto;
 import com.chinook.musicstore.entities.Album;
 import com.chinook.musicstore.service.AlbumService;
 import lombok.RequiredArgsConstructor;
@@ -14,34 +15,28 @@ import java.util.List;
 public class AlbumsController {
     private final AlbumService albumService;
 
-    @GetMapping("/getAllAlbums")
-    public List<Album> getAllAlbums() {
-        System.out.println("GETTING ALL ALBUMS FROM ALBUM SERVICE...");
-        return this.albumService.getAllAlbums();
+    @GetMapping("/findAlbumByAlbumId")
+    public AlbumDto findAlbumByAlbumId(@RequestParam("albumId") int albumId) {
+        return this.albumService.findAlbumByAlbumId(albumId);
     }
 
-    @GetMapping("/getAllAlbumsOrderByArtistName")
-    public List<Album> getAllAlbumsOrderByArtistName() {
-        return this.albumService.getAllAlbumsOrderByArtistName();
+    @GetMapping("/findAlbumByAlbumTitle")
+    public AlbumDto findAlbumByAlbumTitle(String albumTitle) {
+        return this.albumService.findAlbumByAlbumTitle(albumTitle);
     }
 
-    @GetMapping("/getAllAlbumsByArtistName")
-    public List<Album> getAllAlbumsByArtistName(@RequestParam(name = "artistName") String artistName) {
-        System.out.println("GETTING ALL ALBUMS BY ARTIST NAME FROM ALBUM SERVICE...");
-        return this.albumService.getAlbumsByArtistName(artistName);
+    @GetMapping("/findAllAlbums")
+    public List<Album> findAllAlbums() {
+        return this.albumService.findAllAlbums();
     }
 
-    @GetMapping("/getAllAlbumsByArtistId")
-    public List<Album> getAllAlbumsByArtistId(@RequestParam(name = "artistId") int artistId) {
-        System.out.println("GETTING ALL ALBUMS BY ARTIST ID " + artistId + " FROM ALBUM SERVICE...");
-        return this.albumService.getAlbumByArtistId(artistId);
+    @GetMapping("/findAlbumsByArtistId")
+    public List<AlbumDto> findAlbumsByArtistId(int artistId){
+        return this.albumService.findAlbumsByArtistId(artistId);
     }
 
-    @GetMapping("/getAlbumByAlbumId")
-    public Album getAlbumByAlbumId(@RequestParam(name = "albumId") int albumId) {
-        System.out.println("GETTING ALBUM BY ALBUM ID " + albumId + " FROM ALBUM SERVICE...");
-        return this.albumService.getAlbumByAlbumId(albumId);
+    @GetMapping("/findAllByArtistIdOrderByAlbumId")
+    List<AlbumDto> findAllByArtistIdOrderByAlbumId(int artistId){
+        return this.albumService.findAllByArtistIdOrderByAlbumId(artistId);
     }
-
-
 }

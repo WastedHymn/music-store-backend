@@ -1,6 +1,7 @@
 package com.chinook.musicstore.service;
 
 
+import com.chinook.musicstore.dto.PlaylistTrackDto;
 import com.chinook.musicstore.dto.TrackDto;
 import com.chinook.musicstore.entities.PlaylistTrack;
 import com.chinook.musicstore.entities.Track;
@@ -15,43 +16,57 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlaylistTrackService {
     private final PlaylistTrackRepository playlistTrackRepository;
+    private final TrackService trackService;
+    private final AlbumService albumService;
 
-    public List<PlaylistTrack> getAllPlaylistTracks() {
-        return this.playlistTrackRepository.findAll();
+    public List<TrackDto> findAllPlaylistTracks() {
+        List<PlaylistTrack> playlistTracks = this.playlistTrackRepository.findAll();
+        return getPlaylistTrackDtos(playlistTracks);
     }
 
-    public List<TrackDto> getPlaylistTracksByPlaylistId(int playlistId) {
-        List<PlaylistTrack> playlistTracks = this.playlistTrackRepository.getByPlaylistPlaylistId(playlistId);
-
-        return getTracksFromPlaylistTrackList(playlistTracks);
+    public List<TrackDto> findPlaylistTracksByPlaylistId(int playlistId) {
+        List<PlaylistTrack> playlistTracks = this.playlistTrackRepository.findByPlaylistTrackIdPlaylistId(playlistId);
+        return getPlaylistTrackDtos(playlistTracks);
     }
 
-    public List<TrackDto> getAllPlaylistTracksOrderByTrackId() {
-        List<PlaylistTrack> playlistTracks = this.playlistTrackRepository.findAllByOrderByTrackTrackId();
-
-        return getTracksFromPlaylistTrackList(playlistTracks);
+    public List<TrackDto> findAllPlaylistTracksOrderByTrackId() {
+        List<PlaylistTrack> playlistTracks = this.playlistTrackRepository.findAllByOrderByPlaylistTrackIdTrackId();
+        System.out.println("playlistTracks size: " + playlistTracks.size());
+        return getPlaylistTrackDtos(playlistTracks);
     }
 
-    private List<TrackDto> getTracksFromPlaylistTrackList(List<PlaylistTrack> playlistTracks){
+    private List<TrackDto> getPlaylistTrackDtos(List<PlaylistTrack> playlistTracks) {
         List<TrackDto> tracks = new ArrayList<>();
-        playlistTracks.forEach(playlistTrack -> {
-            Track track = playlistTrack.getTrack();
-            TrackDto trackDto = getTrackDto(track);
-            if (!tracks.contains(trackDto))
-                tracks.add(trackDto);
-        });
-        System.out.println("tracks size: " + tracks.size());
+        for (PlaylistTrack playlistTrack : playlistTracks) {
+            Track track = trackService.findTrackByTrackId(
+                    playlistTrack.getPlaylistTrackId().getTrackId()
+            );
+            String albumTitle = albumService.findAlbumByAlbumId(track.getAlbumId()).getAlbumTitle();
+            PlaylistTrackDto playlistTrackDto = getPlaylistTrackDto(
+                    track,
+                    albumTitle,
+                    playlistTrack.getPlaylistTrackId().getPlaylistId()
+            );
+            tracks.add(playlistTrackDto);
+        }
+        System.out.println("Tracks size: " + tracks.size());
         return tracks;
     }
 
-    private static TrackDto getTrackDto(Track track) {
-        return new TrackDto(
-                track.getTrackId(),
-                track.getTrackName(),
-                track.getAlbum(),
-                track.getMediaType(),
-                track.getGenre(),
-                track.getComposer(),
-                track.getUnitPrice());
+    private PlaylistTrackDto getPlaylistTrackDto(Track track, String albumTitle, int playlistID) {
+
+        return PlaylistTrackDto.builder()
+                .trackId(track.getTrackId())
+                .trackName(track.getTrackName())
+                .albumId(track.getAlbumId())
+                .albumTitle(albumTitle)
+                .mediaTypeId(track.getMediaTypeId())
+                .genreId(track.getGenreId())
+                .composer(track.getComposer())
+                .unitPrice(track.getUnitPrice())
+                .playlistId(playlistID)
+                .build();
     }
+
+
 }

@@ -17,8 +17,18 @@ import java.util.List;
 public class GenresController {
     private final GenreService genreService;
 
-    @GetMapping("/getAllGenres")
-    public List<Genre> getAllGenres(){
-        return this.genreService.getAllGenres();
+    @GetMapping("/findByGenreId")
+    public Genre findByGenreId(int genreId) {
+        return this.genreService.findByGenreId(genreId);
+    }
+
+    @GetMapping("/findAllByOrderByGenreName")
+    public List<Genre> findAllByOrderByGenreName() {
+        return this.genreService.findAllByOrderByGenreName();
+    }
+
+    @GetMapping("/findAllGenres")
+    public List<Genre> findAllGenres(){
+        return this.genreService.findAllGenres();
     }
 }

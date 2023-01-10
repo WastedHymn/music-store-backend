@@ -1,7 +1,6 @@
 package com.chinook.musicstore.controller;
 
 import com.chinook.musicstore.dto.TrackDto;
-import com.chinook.musicstore.entities.PlaylistTrack;
 import com.chinook.musicstore.service.PlaylistTrackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,20 +14,20 @@ import java.util.List;
 public class PlaylistTracksController {
     private final PlaylistTrackService playlistTrackService;
 
-    @GetMapping("/getAllPlaylistTracks")
-    public List<PlaylistTrack> getAllPlaylistTracks() {
-        return this.playlistTrackService.getAllPlaylistTracks();
+    @GetMapping("/findAllPlaylistTracks")
+    public List<TrackDto> findAllPlaylistTracks() {
+        return this.playlistTrackService.findAllPlaylistTracks();
     }
 
-    @GetMapping("/getPlaylistTracksByPlaylistId")
-    public List<TrackDto> getPlaylistTracksByPlaylistId(@RequestParam("playlistId") int playlistId) {
+    @GetMapping("/findPlaylistTracksByPlaylistId")
+    public List<TrackDto> findPlaylistTracksByPlaylistId(@RequestParam("playlistId") int playlistId) {
 
-        return this.playlistTrackService.getPlaylistTracksByPlaylistId(playlistId);
+        return this.playlistTrackService.findPlaylistTracksByPlaylistId(playlistId);
     }
 
-    @GetMapping("/getAllPlaylistTracksOrderByTrackId")
-    public List<TrackDto> getAllPlaylistTracksOrderByTrackId() {
-        return this.playlistTrackService.getAllPlaylistTracksOrderByTrackId();
+    @GetMapping("/findAllPlaylistTracksOrderByTrackId")
+    public List<TrackDto> findAllPlaylistTracksOrderByTrackId() {
+        return this.playlistTrackService.findAllPlaylistTracksOrderByTrackId();
     }
 
 }
